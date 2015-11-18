@@ -19,10 +19,11 @@ class ViewController: UIViewController
 	{
 		super.viewDidLoad()
 
-		abstractView.visualEffect = nil
+//		abstractView.visualEffect = nil
 		abstractView.backgroundColor = UIColor.blackColor()
-		abstractView.shapeInitializers = [OvalShape.circleShapeInitializer]
-		abstractView.minShapeSize = 10
-		abstractView.maxShapeSize = 100
+		abstractView.shapeCount = 10
+//		abstractView.shapeInitializers = [TriangleShape.triangleShapeInitializer]
+//		abstractView.minShapeSize = 10
+//		abstractView.maxShapeSize = 100
 	}
 }

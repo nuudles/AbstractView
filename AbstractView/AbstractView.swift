@@ -58,7 +58,13 @@ public class AbstractView: UIView
 			}
 		}
 	}
-	public var shapeInitializers: [ShapeInitializer] = [OvalShape.circleShapeInitializer, OvalShape.ovalShapeInitializer, RectangleShape.rectangleShapeInitializer, RectangleShape.squareShapeInitializer]
+	public var shapeInitializers: [ShapeInitializer] = [OvalShape.circleShapeInitializer, OvalShape.ovalShapeInitializer, RectangleShape.rectangleShapeInitializer, RectangleShape.squareShapeInitializer, TriangleShape.triangleShapeInitializer]
+	{
+		didSet
+		{
+			createShapes()
+		}
+	}
 	public var shapeCount = 100
 	{
 		didSet

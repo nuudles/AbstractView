@@ -20,6 +20,7 @@
 		302E15601BFC13E80086DB59 /* AbstractShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E155F1BFC13E80086DB59 /* AbstractShape.swift */; };
 		302E15631BFC15A60086DB59 /* OvalShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E15621BFC15A60086DB59 /* OvalShape.swift */; };
 		302E15651BFC37A20086DB59 /* RectangleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E15641BFC37A20086DB59 /* RectangleShape.swift */; };
+		306B81691BFCCFAF003815AB /* TriangleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B81681BFCCFAF003815AB /* TriangleShape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		302E155F1BFC13E80086DB59 /* AbstractShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractShape.swift; sourceTree = "<group>"; };
 		302E15621BFC15A60086DB59 /* OvalShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalShape.swift; sourceTree = "<group>"; };
 		302E15641BFC37A20086DB59 /* RectangleShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleShape.swift; sourceTree = "<group>"; };
+		306B81681BFCCFAF003815AB /* TriangleShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				302E15621BFC15A60086DB59 /* OvalShape.swift */,
 				302E15641BFC37A20086DB59 /* RectangleShape.swift */,
+				306B81681BFCCFAF003815AB /* TriangleShape.swift */,
 			);
 			path = Shapes;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				302E15651BFC37A20086DB59 /* RectangleShape.swift in Sources */,
 				302E15601BFC13E80086DB59 /* AbstractShape.swift in Sources */,
 				302E15631BFC15A60086DB59 /* OvalShape.swift in Sources */,
+				306B81691BFCCFAF003815AB /* TriangleShape.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
