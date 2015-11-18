@@ -25,52 +25,52 @@ public struct TriangleShape: AbstractShape
 	// MARK: - Public constants
 	public static let triangleShapeInitializer: ShapeInitializer =
 	{
-		(frame: CGRect, color: UIColor) in
-		return TriangleShape(frame: frame, color: color)
+		(relativeFrame: CGRect, color: UIColor) in
+		return TriangleShape(relativeFrame: relativeFrame, color: color)
 	}
 	
 	// MARK: - Public properties
-	public var frame: CGRect
+	public var relativeFrame: CGRect
 	public var color: UIColor
 	public var orientation: Orientation
 
 	// MARK: - Initialization methods
-	public init(frame: CGRect, color: UIColor, orientation: Orientation)
+	public init(relativeFrame: CGRect, color: UIColor, orientation: Orientation)
 	{
-		self.frame = frame
+		self.relativeFrame = relativeFrame
 		self.color = color
 		self.orientation = orientation
 		
 	}
 
-	init(frame: CGRect, color: UIColor)
+	init(relativeFrame: CGRect, color: UIColor)
 	{
-		self.init(frame: frame, color: color, orientation: Orientation.allValues[Int(arc4random_uniform(UInt32(Orientation.count)))])
+		self.init(relativeFrame: relativeFrame, color: color, orientation: Orientation.allValues[Int(arc4random_uniform(UInt32(Orientation.count)))])
 	}
 
 	// MARK: - AbstractShape methods
-	public func drawInContext(context: CGContextRef)
+	public func drawInContext(context: CGContextRef, forRect rect: CGRect)
 	{
 		CGContextSetFillColorWithColor(context, color.CGColor)
 		CGContextBeginPath(context)
 		switch orientation
 		{
 		case .Normal:
-			CGContextMoveToPoint(context, frame.origin.x, frame.origin.y + frame.size.height)
-			CGContextAddLineToPoint(context, frame.origin.x + frame.size.width / 2.0, frame.origin.y)
-			CGContextAddLineToPoint(context, frame.origin.x + frame.size.width, frame.origin.y + frame.size.height)
+			CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + rect.size.height)
+			CGContextAddLineToPoint(context, rect.origin.x + rect.size.width / 2.0, rect.origin.y)
+			CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height)
 		case .UpsideDown:
-			CGContextMoveToPoint(context, frame.origin.x, frame.origin.y)
-			CGContextAddLineToPoint(context, frame.origin.x + frame.size.width / 2.0, frame.origin.y + frame.size.height)
-			CGContextAddLineToPoint(context, frame.origin.x + frame.size.width, frame.origin.y)
+			CGContextMoveToPoint(context, rect.origin.x, rect.origin.y)
+			CGContextAddLineToPoint(context, rect.origin.x + rect.size.width / 2.0, rect.origin.y + rect.size.height)
+			CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y)
 		case .PointingLeft:
-			CGContextMoveToPoint(context, frame.origin.x, frame.origin.y + frame.size.height / 2.0)
-			CGContextAddLineToPoint(context, frame.origin.x + frame.size.width, frame.origin.y)
-			CGContextAddLineToPoint(context, frame.origin.x + frame.size.width, frame.origin.y + frame.size.height)
+			CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + rect.size.height / 2.0)
+			CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y)
+			CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height)
 		case .PointingRight:
-			CGContextMoveToPoint(context, frame.origin.x, frame.origin.y)
-			CGContextAddLineToPoint(context, frame.origin.x + frame.size.width, frame.origin.y + frame.size.height / 2.0)
-			CGContextAddLineToPoint(context, frame.origin.x, frame.origin.y + frame.size.height)
+			CGContextMoveToPoint(context, rect.origin.x, rect.origin.y)
+			CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + rect.size.height / 2.0)
+			CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height)
 		}
 		CGContextClosePath(context)
 

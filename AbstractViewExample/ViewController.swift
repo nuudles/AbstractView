@@ -19,11 +19,15 @@ class ViewController: UIViewController
 	{
 		super.viewDidLoad()
 
-//		abstractView.visualEffect = nil
-		abstractView.backgroundColor = UIColor.blackColor()
-		abstractView.shapeCount = 10
-//		abstractView.shapeInitializers = [TriangleShape.triangleShapeInitializer]
-//		abstractView.minShapeSize = 10
-//		abstractView.maxShapeSize = 100
+		let imageView = UIImageView(image: UIImage(named: "space-wallpaper-29"))
+		imageView.contentMode = .ScaleAspectFill
+
+		abstractView.visualEffect = UIBlurEffect(style: .Light)
+//		abstractView.backgroundColor = UIColor.blackColor()
+		abstractView.shapeCount = 20
+		abstractView.backgroundView = imageView
+//		abstractView.shapeInitializers = [OvalShape.circleShapeInitializer]
+		abstractView.minShapeSize = 50
+		abstractView.maxShapeSize = 100
 	}
 }

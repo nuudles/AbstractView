@@ -8,14 +8,16 @@
 
 import UIKit
 
-public typealias ShapeInitializer = (frame: CGRect, color: UIColor) -> (AbstractShape)
+public typealias ShapeInitializer = (relativeFrame: CGRect, color: UIColor) -> (AbstractShape)
 
 public class AbstractView: UIView
 {
-	// MARK: - Private properties
-	private var shapeArray: [AbstractShape] = []
-
 	// MARK: - Private UI properties
+	private lazy var abstractShapeView: AbstractShapeView =
+	{
+		let abstractShapeView = AbstractShapeView()
+		return abstractShapeView
+	}()
 	private lazy var visualEffectView: UIVisualEffectView =
 	{
 		let visualEffectView = UIVisualEffectView(effect: UIBlurEffect())
@@ -54,37 +56,30 @@ public class AbstractView: UIView
 			oldValue?.removeFromSuperview()
 			if let view = backgroundView
 			{
-				insertSubview(view, atIndex: 0)
+				insertSubview(view, belowSubview: abstractShapeView)
+				setNeedsLayout()
 			}
 		}
 	}
-	public var shapeInitializers: [ShapeInitializer] = [OvalShape.circleShapeInitializer, OvalShape.ovalShapeInitializer, RectangleShape.rectangleShapeInitializer, RectangleShape.squareShapeInitializer, TriangleShape.triangleShapeInitializer]
+	public var shapeInitializers: [ShapeInitializer]
 	{
-		didSet
-		{
-			createShapes()
-		}
+		get { return abstractShapeView.shapeInitializers }
+		set { abstractShapeView.shapeInitializers = newValue }
 	}
-	public var shapeCount = 100
+	public var shapeCount: Int
 	{
-		didSet
-		{
-			setNeedsDisplay()
-		}
+		get { return abstractShapeView.shapeCount }
+		set { abstractShapeView.shapeCount = newValue }
 	}
-	public var minShapeSize = CGFloat(0.0)
+	public var minShapeSize: CGFloat
 	{
-		didSet
-		{
-			createShapes()
-		}
+		get { return abstractShapeView.minShapeSize }
+		set { abstractShapeView.minShapeSize = newValue }
 	}
-	public var maxShapeSize = CGFloat(FLT_MAX)
+	public var maxShapeSize: CGFloat
 	{
-		didSet
-		{
-			createShapes()
-		}
+		get { return abstractShapeView.maxShapeSize }
+		set { abstractShapeView.maxShapeSize = newValue }
 	}
 
 	// MARK: - Initialization methods
@@ -105,42 +100,8 @@ public class AbstractView: UIView
 	// MARK: - Private methods
 	private func initializeView()
 	{
-		createShapes()
-
-		contentMode = .Redraw
-
+		addSubview(abstractShapeView)
 		addSubview(visualEffectView)
-	}
-
-	private func createShapes()
-	{
-		shapeArray = []
-		guard shapeInitializers.count > 0 else { return }
-
-		for _ in 0 ..< shapeCount
-		{
-			let randomIndex = Int(arc4random_uniform(UInt32(shapeInitializers.count)))
-			let shapeInitializer = shapeInitializers[randomIndex]
-
-			let shape = shapeInitializer(frame: randomFrame(), color: randomColor())
-			shapeArray.append(shape)
-		}
-		setNeedsDisplay()
-	}
-
-	private func randomFrame() -> CGRect
-	{
-		let width = max(min(CGFloat(arc4random_uniform(UInt32(bounds.size.width / 2.0))), maxShapeSize), minShapeSize)
-		let height = max(min(CGFloat(arc4random_uniform(UInt32(bounds.size.height / 2.0))), maxShapeSize), minShapeSize)
-		return CGRect(x: CGFloat(arc4random_uniform(UInt32(bounds.size.width + width))) - width / 2.0,
-			y: CGFloat(arc4random_uniform(UInt32(bounds.size.height + height))) - height / 2.0,
-			width: width,
-			height: height)
-	}
-
-	private func randomColor() -> UIColor
-	{
-		return UIColor(red: CGFloat(arc4random_uniform(1000)) / 1000.0, green: CGFloat(arc4random_uniform(1000)) / 1000.0, blue: CGFloat(arc4random_uniform(1000)) / 1000.0, alpha: 1.0)
 	}
 
 	// MARK: - Layout methods
@@ -148,18 +109,8 @@ public class AbstractView: UIView
 	{
 		super.layoutSubviews()
 
+		backgroundView?.frame = bounds
+		abstractShapeView.frame = bounds
 		visualEffectView.frame = bounds
-	}
-
-	// MARK: - Drawing methodss
-	public override func drawRect(rect: CGRect)
-	{
-		super.drawRect(rect)
-
-		guard let context = UIGraphicsGetCurrentContext() else { return }
-		for shape in shapeArray
-		{
-			shape.drawInContext(context)
-		}
 	}
 }

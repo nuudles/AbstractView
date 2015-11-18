@@ -13,33 +13,33 @@ public struct RectangleShape: AbstractShape
 	// MARK: - Public constants
 	public static let rectangleShapeInitializer: ShapeInitializer =
 	{
-		(frame: CGRect, color: UIColor) in
-		return RectangleShape(frame: frame, color: color)
+		(relativeFrame: CGRect, color: UIColor) in
+		return RectangleShape(relativeFrame: relativeFrame, color: color)
 	}
 	public static let squareShapeInitializer: ShapeInitializer =
 	{
-		(frame: CGRect, color: UIColor) in
-		let radius = min(frame.size.width, frame.size.height)
-		return RectangleShape(frame: CGRect(x: frame.origin.x, y: frame.origin.y, width: radius, height: radius), color: color)
+		(relativeFrame: CGRect, color: UIColor) in
+		let radius = min(relativeFrame.size.width, relativeFrame.size.height)
+		return RectangleShape(relativeFrame: CGRect(x: relativeFrame.origin.x, y: relativeFrame.origin.y, width: radius, height: radius), color: color)
 	}
 
 	// MARK: - Public properties
-	public var frame: CGRect
+	public var relativeFrame: CGRect
 	public var color: UIColor
 
 	// MARK: - Initialization methods
-	public init(frame: CGRect, color: UIColor)
+	public init(relativeFrame: CGRect, color: UIColor)
 	{
-		self.frame = frame
+		self.relativeFrame = relativeFrame
 		self.color = color
 	}
 
 	// MARK: - AbstractShape methods
-	public func drawInContext(context: CGContextRef)
+	public func drawInContext(context: CGContextRef, forRect rect: CGRect)
 	{
 		CGContextSetStrokeColorWithColor(context, color.CGColor)
 		CGContextSetFillColorWithColor(context, color.CGColor)
-		CGContextFillRect(context, frame)
-		CGContextStrokeRect(context, frame)
+		CGContextFillRect(context, rect)
+		CGContextStrokeRect(context, rect)
 	}
 }

@@ -10,5 +10,6 @@ import Foundation
 
 public protocol AbstractShape
 {
-	func drawInContext(context: CGContextRef)
+	var relativeFrame: CGRect { get set }
+	func drawInContext(context: CGContextRef, forRect rect: CGRect)
 }
