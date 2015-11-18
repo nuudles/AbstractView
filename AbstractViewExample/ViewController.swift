@@ -24,10 +24,11 @@ class ViewController: UIViewController
 
 		abstractView.visualEffect = UIBlurEffect(style: .Light)
 //		abstractView.backgroundColor = UIColor.blackColor()
-		abstractView.shapeCount = 20
+		abstractView.shapeCount = 50
 		abstractView.backgroundView = imageView
-//		abstractView.shapeInitializers = [OvalShape.circleShapeInitializer]
-		abstractView.minShapeSize = 50
-		abstractView.maxShapeSize = 100
+		abstractView.colorPalette = [UIColor(red: 0.0, green: 0.0, blue: 0.7, alpha: 1.0), UIColor(red: 0.0, green: 0.05, blue: 0.6, alpha: 1.0), UIColor(red: 0.0, green: 0.3, blue: 0.8, alpha: 1.0), UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.5)]
+		abstractView.shapeInitializers = [{ (relativeFrame, _) in return ImageShape(relativeFrame: relativeFrame, image: UIImage(named: "sparkle")!) }]
+//		abstractView.minShapeSize = 10
+//		abstractView.maxShapeSize = 50
 	}
 }
