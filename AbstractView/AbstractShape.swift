@@ -10,9 +10,5 @@ import Foundation
 
 public protocol AbstractShape
 {
-	var frame: CGRect { get set }
-	var color: UIColor { get set }
-
-	init(frame: CGRect, color: UIColor)
 	func drawInContext(context: CGContextRef)
 }

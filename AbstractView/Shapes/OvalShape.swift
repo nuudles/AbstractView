@@ -27,13 +27,14 @@ public struct OvalShape: AbstractShape
 	public var frame: CGRect
 	public var color: UIColor
 
-	// MARK: - AbstractShape methods
+	// MARK: - Initialization methods
 	public init(frame: CGRect, color: UIColor)
 	{
 		self.frame = frame
 		self.color = color
 	}
 
+	// MARK: - AbstractShape methods
 	public func drawInContext(context: CGContextRef)
 	{
 		CGContextSetStrokeColorWithColor(context, color.CGColor)
