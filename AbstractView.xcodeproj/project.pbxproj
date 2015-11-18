@@ -22,6 +22,7 @@
 		302E15651BFC37A20086DB59 /* RectangleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E15641BFC37A20086DB59 /* RectangleShape.swift */; };
 		306B81691BFCCFAF003815AB /* TriangleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B81681BFCCFAF003815AB /* TriangleShape.swift */; };
 		306B816B1BFCD893003815AB /* AbstractShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B816A1BFCD893003815AB /* AbstractShapeView.swift */; };
+		306B816F1BFD2940003815AB /* DiamondShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B816E1BFD2940003815AB /* DiamondShape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		302E15641BFC37A20086DB59 /* RectangleShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleShape.swift; sourceTree = "<group>"; };
 		306B81681BFCCFAF003815AB /* TriangleShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleShape.swift; sourceTree = "<group>"; };
 		306B816A1BFCD893003815AB /* AbstractShapeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractShapeView.swift; sourceTree = "<group>"; };
+		306B816E1BFD2940003815AB /* DiamondShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiamondShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				302E15621BFC15A60086DB59 /* OvalShape.swift */,
 				302E15641BFC37A20086DB59 /* RectangleShape.swift */,
 				306B81681BFCCFAF003815AB /* TriangleShape.swift */,
+				306B816E1BFD2940003815AB /* DiamondShape.swift */,
 			);
 			path = Shapes;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			files = (
 				302E155D1BFBE9FE0086DB59 /* AbstractView.swift in Sources */,
 				302E15651BFC37A20086DB59 /* RectangleShape.swift in Sources */,
+				306B816F1BFD2940003815AB /* DiamondShape.swift in Sources */,
 				306B816B1BFCD893003815AB /* AbstractShapeView.swift in Sources */,
 				302E15601BFC13E80086DB59 /* AbstractShape.swift in Sources */,
 				302E15631BFC15A60086DB59 /* OvalShape.swift in Sources */,
