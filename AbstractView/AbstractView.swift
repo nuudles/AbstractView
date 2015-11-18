@@ -81,6 +81,11 @@ public class AbstractView: UIView
 		get { return abstractShapeView.maxShapeSize }
 		set { abstractShapeView.maxShapeSize = newValue }
 	}
+	public var colorPalette: [UIColor]?
+	{
+		get { return abstractShapeView.colorPalette }
+		set { abstractShapeView.colorPalette = newValue }
+	}
 
 	// MARK: - Initialization methods
 	public override init(frame: CGRect)

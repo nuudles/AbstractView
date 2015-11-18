@@ -43,6 +43,13 @@ public class AbstractShapeView: UIView
 			setNeedsShapeCreation()
 		}
 	}
+	public var colorPalette: [UIColor]?
+	{
+		didSet
+		{
+			setNeedsShapeCreation()
+		}
+	}
 
 	// MARK: - Initialization methods
 	public override init(frame: CGRect)
@@ -89,6 +96,10 @@ public class AbstractShapeView: UIView
 	
 	private func randomColor() -> UIColor
 	{
+		if let colorPalette = colorPalette
+		{
+			return colorPalette[Int(arc4random_uniform(UInt32(colorPalette.count)))]
+		}
 		return UIColor(red: CGFloat(arc4random_uniform(1000)) / 1000.0, green: CGFloat(arc4random_uniform(1000)) / 1000.0, blue: CGFloat(arc4random_uniform(1000)) / 1000.0, alpha: 1.0)
 	}
 
