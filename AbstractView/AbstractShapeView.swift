@@ -11,6 +11,7 @@ import Foundation
 public class AbstractShapeView: UIView
 {
 	// MARK: - Private properties
+	private var needsShapeCreation = true
 	private var shapeArray: [AbstractShape] = []
 
 	// MARK: - Public properties
@@ -18,28 +19,28 @@ public class AbstractShapeView: UIView
 	{
 		didSet
 		{
-			createShapes()
+			setNeedsShapeCreation()
 		}
 	}
 	public var shapeCount = 100
 	{
 		didSet
 		{
-			setNeedsDisplay()
+			setNeedsShapeCreation()
 		}
 	}
 	public var minShapeSize = CGFloat(0.0)
 	{
 		didSet
 		{
-			createShapes()
+			setNeedsShapeCreation()
 		}
 	}
 	public var maxShapeSize = CGFloat(FLT_MAX)
 	{
 		didSet
 		{
-			createShapes()
+			setNeedsShapeCreation()
 		}
 	}
 
@@ -61,7 +62,7 @@ public class AbstractShapeView: UIView
 	{
 		backgroundColor = .clearColor()
 		contentMode = .Redraw
-		createShapes()
+		setNeedsShapeCreation()
 	}
 
 	private func createShapes()
@@ -73,11 +74,12 @@ public class AbstractShapeView: UIView
 		{
 			let randomIndex = Int(arc4random_uniform(UInt32(shapeInitializers.count)))
 			let shapeInitializer = shapeInitializers[randomIndex]
-			
+
 			let shape = shapeInitializer(relativeFrame: randomRelativeFrame(), color: randomColor())
 			shapeArray.append(shape)
 		}
-		setNeedsDisplay()
+
+		needsShapeCreation = false
 	}
 	
 	private func randomRelativeFrame() -> CGRect
@@ -90,18 +92,30 @@ public class AbstractShapeView: UIView
 		return UIColor(red: CGFloat(arc4random_uniform(1000)) / 1000.0, green: CGFloat(arc4random_uniform(1000)) / 1000.0, blue: CGFloat(arc4random_uniform(1000)) / 1000.0, alpha: 1.0)
 	}
 
+	// MARK: - Public methods
+	public func setNeedsShapeCreation()
+	{
+		needsShapeCreation = true
+		setNeedsDisplay()
+	}
+
 	// MARK: - Drawing methodss
 	public override func drawRect(rect: CGRect)
 	{
 		super.drawRect(rect)
 
+		if needsShapeCreation
+		{
+			createShapes()
+		}
+
 		guard let context = UIGraphicsGetCurrentContext() else { return }
 		for shape in shapeArray
 		{
 			let minDimension = min(bounds.size.width, bounds.size.height)
-			var shapeRect = CGRect(x: shape.relativeFrame.minX * bounds.size.width, y: shape.relativeFrame.minY * bounds.size.height, width: shape.relativeFrame.size.width * minDimension, height: shape.relativeFrame.size.height * minDimension)
-			shapeRect.size.width = min(max(shapeRect.size.width, minShapeSize), maxShapeSize)
-			shapeRect.size.height = min(max(shapeRect.size.height, minShapeSize), maxShapeSize)
+			let width = min(max(shape.relativeFrame.size.width * minDimension, minShapeSize), maxShapeSize)
+			let height = min(max(shape.relativeFrame.size.height * minDimension, minShapeSize), maxShapeSize)
+			let shapeRect = CGRect(x: shape.relativeFrame.minX * bounds.size.width - width / 2.0, y: shape.relativeFrame.minY * bounds.size.height - height / 2.0, width: width, height: height)
 			shape.drawInContext(context, forRect: shapeRect)
 		}
 	}
