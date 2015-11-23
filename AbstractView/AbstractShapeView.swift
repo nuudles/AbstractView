@@ -29,14 +29,14 @@ public class AbstractShapeView: UIView
 			setNeedsShapeCreation()
 		}
 	}
-	public var minShapeSize = CGFloat(0.0)
+	public var minShapeSize: CGFloat?
 	{
 		didSet
 		{
 			setNeedsShapeCreation()
 		}
 	}
-	public var maxShapeSize = CGFloat(FLT_MAX)
+	public var maxShapeSize: CGFloat?
 	{
 		didSet
 		{
@@ -124,8 +124,8 @@ public class AbstractShapeView: UIView
 		for shape in shapeArray
 		{
 			let minDimension = min(bounds.size.width, bounds.size.height)
-			let width = min(max(shape.relativeFrame.size.width * minDimension, minShapeSize), maxShapeSize)
-			let height = min(max(shape.relativeFrame.size.height * minDimension, minShapeSize), maxShapeSize)
+			let width = min(max(shape.relativeFrame.size.width * minDimension, minShapeSize ?? 0.0), maxShapeSize ?? CGFloat(FLT_MAX))
+			let height = min(max(shape.relativeFrame.size.height * minDimension, minShapeSize ?? 0.0), maxShapeSize ?? CGFloat(FLT_MAX))
 			let shapeRect = CGRect(x: shape.relativeFrame.minX * bounds.size.width - width / 2.0, y: shape.relativeFrame.minY * bounds.size.height - height / 2.0, width: width, height: height)
 			shape.drawInContext(context, forRect: shapeRect)
 		}

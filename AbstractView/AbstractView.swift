@@ -71,12 +71,12 @@ public class AbstractView: UIView
 		get { return abstractShapeView.shapeCount }
 		set { abstractShapeView.shapeCount = newValue }
 	}
-	public var minShapeSize: CGFloat
+	public var minShapeSize: CGFloat?
 	{
 		get { return abstractShapeView.minShapeSize }
 		set { abstractShapeView.minShapeSize = newValue }
 	}
-	public var maxShapeSize: CGFloat
+	public var maxShapeSize: CGFloat?
 	{
 		get { return abstractShapeView.maxShapeSize }
 		set { abstractShapeView.maxShapeSize = newValue }
