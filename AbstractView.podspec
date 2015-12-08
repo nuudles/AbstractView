@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'AbstractView'
-  s.version = '0.0.1'
+  s.version = '0.0.2'
   s.license = 'MIT'
   s.summary = 'The AbstractView is a simple view that can be used as a simple background view using abstract shapes and a visual effect'
   s.homepage = 'https://github.com/nuudles/AbstractView'
