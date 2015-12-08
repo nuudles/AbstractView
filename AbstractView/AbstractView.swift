@@ -21,6 +21,7 @@ public class AbstractView: UIView
 	private lazy var visualEffectView: UIVisualEffectView =
 	{
 		let visualEffectView = UIVisualEffectView(effect: UIBlurEffect())
+		visualEffectView.translatesAutoresizingMaskIntoConstraints = false
 		return visualEffectView
 	}()
 
@@ -37,6 +38,7 @@ public class AbstractView: UIView
 			visualEffectView.contentView.subviews.forEach({ newVisualEffectView.contentView.addSubview($0) })
 			visualEffectView.removeFromSuperview()
 			visualEffectView = newVisualEffectView
+			visualEffectView.translatesAutoresizingMaskIntoConstraints = false
 			addSubview(visualEffectView)
 
 			setNeedsLayout()
@@ -107,6 +109,7 @@ public class AbstractView: UIView
 	{
 		addSubview(abstractShapeView)
 		addSubview(visualEffectView)
+		setNeedsLayout()
 	}
 
 	// MARK: - Layout methods
