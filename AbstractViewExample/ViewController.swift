@@ -19,28 +19,28 @@ class ViewController: UIViewController
 	{
 		let button = UIButton(type: UIButtonType.System)
 		button.setTitle("Turn on background image", forState: .Normal)
-		button.addTarget(self, action: Selector("toggleButtonTapped:"), forControlEvents: .TouchUpInside)
+		button.addTarget(self, action: #selector(ViewController.toggleButtonTapped(_:)), forControlEvents: .TouchUpInside)
 		return button
 	}()
 	private lazy var visualEffectButton: UIButton =
 	{
 		let button = UIButton(type: UIButtonType.System)
 		button.setTitle("Light blur", forState: .Normal)
-		button.addTarget(self, action: Selector("toggleButtonTapped:"), forControlEvents: .TouchUpInside)
+		button.addTarget(self, action: #selector(ViewController.toggleButtonTapped(_:)), forControlEvents: .TouchUpInside)
 		return button
 	}()
 	private lazy var shapeButton: UIButton =
 	{
 		let button = UIButton(type: UIButtonType.System)
 		button.setTitle("Only circles", forState: .Normal)
-		button.addTarget(self, action: Selector("toggleButtonTapped:"), forControlEvents: .TouchUpInside)
+		button.addTarget(self, action: #selector(ViewController.toggleButtonTapped(_:)), forControlEvents: .TouchUpInside)
 		return button
 	}()
 	private lazy var paletteButton: UIButton =
 	{
 		let button = UIButton(type: UIButtonType.System)
 		button.setTitle("Blue palette", forState: .Normal)
-		button.addTarget(self, action: Selector("toggleButtonTapped:"), forControlEvents: .TouchUpInside)
+		button.addTarget(self, action: #selector(ViewController.toggleButtonTapped(_:)), forControlEvents: .TouchUpInside)
 		return button
 	}()
 	private lazy var shapeCountLabel: UILabel =
@@ -57,7 +57,7 @@ class ViewController: UIViewController
 		slider.minimumValue = 0
 		slider.maximumValue = 200
 		slider.value = Float(self.abstractView.shapeCount)
-		slider.addTarget(self, action: Selector("sliderValueChanged:"), forControlEvents: .ValueChanged)
+		slider.addTarget(self, action: #selector(ViewController.sliderValueChanged(_:)), forControlEvents: .ValueChanged)
 		return slider
 	}()
 	private lazy var minShapeSizeLabel: UILabel =
@@ -74,7 +74,7 @@ class ViewController: UIViewController
 		slider.minimumValue = -1
 		slider.maximumValue = 300
 		slider.value = -1
-		slider.addTarget(self, action: Selector("sliderValueChanged:"), forControlEvents: .ValueChanged)
+		slider.addTarget(self, action: #selector(ViewController.sliderValueChanged(_:)), forControlEvents: .ValueChanged)
 		return slider
 	}()
 	private lazy var maxShapeSizeLabel: UILabel =
@@ -91,7 +91,7 @@ class ViewController: UIViewController
 		slider.minimumValue = -1
 		slider.maximumValue = 300
 		slider.value = -1
-		slider.addTarget(self, action: Selector("sliderValueChanged:"), forControlEvents: .ValueChanged)
+		slider.addTarget(self, action: #selector(ViewController.sliderValueChanged(_:)), forControlEvents: .ValueChanged)
 		return slider
 	}()
 
@@ -140,7 +140,7 @@ class ViewController: UIViewController
 	// MARK: - Button action methods
 	func toggleButtonTapped(sender: UIButton)
 	{
-		sender.tag++
+		sender.tag += 1
 		switch (sender, sender.tag)
 		{
 		case (backgroundButton, 1):
